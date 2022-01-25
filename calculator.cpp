@@ -68,10 +68,10 @@ int main()
 			goto tryAgain;
 
 		/* This next three will cause your program to wait
-	  * for the user to press enter before continuing
-	  * which will give you time to examine your program’s
-	  * output before your IDE closes the console window.
-	  */
+		 * for the user to press enter before continuing
+		 * which will give you time to examine your programâ€™s
+		 * output before your IDE closes the console window.
+		 */
 
 		std::cin.clear(); // reset any error flags
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore any characters in the input buffer until we find a newline
