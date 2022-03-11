@@ -1,6 +1,7 @@
 #include <iostream>
+#include <iomanip>
 
-int getUserInput() // function that ask the user an integer
+int get_User_Input() // function that ask the user an integer
 {
 	std::cout << "Enter an integer: ";
 	int numInputed{ };
@@ -9,7 +10,7 @@ int getUserInput() // function that ask the user an integer
 	return numInputed;
 }
 
-char getUserMath_Sign() // function that ask the user for a mathematical operator sign.
+char get_User_Math_Sign() // function that ask the user for a mathematical operator sign.
 {
 	std::cout << "Enter an operator sign: ";
 	char op{};
@@ -19,7 +20,7 @@ char getUserMath_Sign() // function that ask the user for a mathematical operato
 
 }
 
-int calculator(int x, char operant, int y ) // function that calculate x and y (add, Subt, Multi, Div) with the operator
+int calculator( int x, char operant, int y ) // function that calculate x and y (add, Subt, Multi, Div) with the operator
 {
 	switch (operant)
 	{
@@ -33,8 +34,8 @@ int calculator(int x, char operant, int y ) // function that calculate x and y (
 		std::cout << x << " - " << y << " = " << x - y << '\n';
 		return x - y;
 	case '/':
-		std::cout << float(x) << " / " << float(y) << " = " << float(x) / float(y) << '\n'; // convert variable into float to get an accurate divided number.
-		return x / y;
+		std::cout << x << " / " << y << " = " << double(x) / double(y) << '\n'; // convert variable into float to get an accurate divided number.
+		return (int)((double)x / (double)y);
 	case '%':
 		std::cout << x << " modulo " << y << " = " << x % y << '\n';
 		return x % y;
@@ -46,36 +47,33 @@ int calculator(int x, char operant, int y ) // function that calculate x and y (
 
 int main()
 {
-	std::cout << "Welcome to my calculator program!\n";
+	std::cout << "=========================\n";
+	std::cout << "Welcome to my Calculator!\n";
+	std::cout << "=========================\n";
+
 	tryAgain: // this is a statement label
 		
 		std::cout << '\n';
 	
 		// get the first number from the user
-		int firstValue{ getUserInput() };
+		int firstValue = get_User_Input();
 
 		// get the mathematical operation sign from the user
-		char operant{ getUserMath_Sign() };
+		char operant = get_User_Math_Sign();
 
 		// get the second number from the user
-		int secondValue{ getUserInput() };
+		int secondValue = get_User_Input();
 
 		std::cout << '\n';
 
 		// print the result
-		int result{ calculator(firstValue, operant, secondValue) };
+		int result = calculator(firstValue, operant, secondValue);
+
 		if (result == 404) // if operator sign invalid, and generate code 404, try again.
 			goto tryAgain;
-
-		/* This next three will cause your program to wait
-		 * for the user to press enter before continuing
-		 * which will give you time to examine your program’s
-		 * output before your IDE closes the console window.
-		 */
-
-		std::cin.clear(); // reset any error flags
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore any characters in the input buffer until we find a newline
-		std::cin.get(); // get one more char from the user (waits for user to press enter)
+		
+		// time pause, press enter before to close the app
+		system("pause");
 
 		return 0;
 }
