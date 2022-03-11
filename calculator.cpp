@@ -4,7 +4,7 @@
 int get_User_Input() // function that ask the user an integer
 {
 	std::cout << "Enter an integer: ";
-	int numInputed{ };
+	int numInputed;
 	std::cin >> numInputed;
 
 	return numInputed;
@@ -13,7 +13,7 @@ int get_User_Input() // function that ask the user an integer
 char get_User_Math_Sign() // function that ask the user for a mathematical operator sign.
 {
 	std::cout << "Enter an operator sign: ";
-	char op{};
+	char op;
 	std::cin >> op;
 
 	return op;
