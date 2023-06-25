@@ -4,3 +4,4 @@ This repo is a test repo for testing a simple calculator app written in multiple
 ## Languages
 - Golang
 - C++
+- Elixir
