@@ -22,8 +22,8 @@ defmodule Calculator do
     @doc """
     Calculate x and y according to the user choice operant
     """
-    def calculator(x, op, y) do
-        case {x, op, y} do
+    def calculator(x, operant, y) do
+        case {x, operant, y} do
             {x, "+", y} -> x + y
             {x, "-", y} -> x - y
             {x, "*", y} -> x * y
@@ -40,11 +40,12 @@ defmodule Main do
         IO.puts("\t==============================\n")
         IO.puts("\t Welcome to ElixirCalculator! \n")
         IO.puts("\t==============================\n\n")
-        x  = Calculator.get_user_input 
-        op = Calculator.get_operator
-        y  = Calculator.get_user_input 
 
-        result = Calculator.calculator(x, op, y)
-        IO.puts("#{x} #{op} #{y} = #{result}")
+        x       = Calculator.get_user_input 
+        operant = Calculator.get_operator
+        y       = Calculator.get_user_input 
+
+        result = Calculator.calculator(x, operant, y)
+        IO.puts("#{x} #{operant} #{y} = #{result}")
     end
 end
