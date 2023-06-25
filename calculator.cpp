@@ -1,7 +1,8 @@
 #include <iostream>
 #include <iomanip>
 
-int get_User_Input() // function that ask the user an integer
+// function that ask the user an integer
+int getUserInput()
 {
 	std::cout << "Enter an integer: ";
 	int numInputed;
@@ -10,7 +11,8 @@ int get_User_Input() // function that ask the user an integer
 	return numInputed;
 }
 
-char get_User_Math_Sign() // function that ask the user for a mathematical operator sign.
+// function that ask the user for a mathematical operator sign.
+char getUserMathSign()
 {
 	std::cout << "Enter an operator sign: ";
 	char op;
@@ -20,7 +22,8 @@ char get_User_Math_Sign() // function that ask the user for a mathematical opera
 
 }
 
-int calculator( int x, char operant, int y ) // function that calculate x and y (add, Subt, Multi, Div) with the operator
+// function that calculate x and y (add, Subt, Multi, Div) with the operator
+int calculator( int x, char operant, int y )
 {
 	switch (operant)
 	{
@@ -41,7 +44,7 @@ int calculator( int x, char operant, int y ) // function that calculate x and y 
 		return x % y;
 	default:
 		std::cout << "Error, invalid operator!" << '\n';
-		return 404; // Error code number, try again if error.
+		return 404;
 	}
 }
 
@@ -51,28 +54,21 @@ int main()
 	std::cout << "Welcome to my Calculator!\n";
 	std::cout << "=========================\n";
 
-	tryAgain: // this is a statement label
+	tryAgain:
 		
 		std::cout << '\n';
 	
-		// get the first number from the user
-		int firstValue = get_User_Input();
-
-		// get the mathematical operation sign from the user
-		char operant = get_User_Math_Sign();
-
-		// get the second number from the user
-		int secondValue = get_User_Input();
+		int firstValue = getUserInput();
+		char operant = getUserMathSign();
+		int secondValue = getUserInput();
 
 		std::cout << '\n';
 
-		// print the result
 		int result = calculator(firstValue, operant, secondValue);
 
-		if (result == 404) // if operator sign invalid, and generate code 404, try again.
+		if (result == 404)
 			goto tryAgain;
 		
-		// time pause, press enter before to close the app
 		system("pause");
 
 		return 0;
