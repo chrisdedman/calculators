@@ -7,16 +7,21 @@ defmodule Calculator do
     Get user input for the numbers to be calculated
     """
     def get_user_input do
-        IO.gets("Enter a number: ") 
-        |> String.trim() 
-        |> String.to_integer()
+        number = IO.gets("Enter a number: ")
+        if number not in [""] do
+            elem(Float.parse(number), 0)
+        else
+            nil
+        end
+        
     end
 
     @doc """
     Get the user input operator for our calculation
     """
     def get_operator do
-        IO.gets("Enter an operator sign [+ - / * % ^]: ") |> String.trim()
+        IO.gets("Enter an operator sign [+ - / * % ^]: ")
+        |> String.trim()
     end
 
     @doc """
@@ -36,7 +41,6 @@ defmodule Main do
         IO.puts("\t==============================\n")
         IO.puts("\t Welcome to ElixirCalculator! \n")
         IO.puts("\t==============================\n\n")
-
         x       = Calculator.get_user_input 
         operant = Calculator.get_operator
         y       = Calculator.get_user_input 
