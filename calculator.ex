@@ -1,6 +1,6 @@
 defmodule Calculator do
     @moduledoc """
-    Provide mathematical calclation from user input
+    Provide mathematical calculation from user input
     """
 
     @doc """
@@ -22,17 +22,13 @@ defmodule Calculator do
     @doc """
     Calculate x and y according to the user choice operant
     """
-    def calculator(x, operant, y) do
-        case {x, operant, y} do
-            {x, "+", y} -> x + y
-            {x, "-", y} -> x - y
-            {x, "*", y} -> x * y
-            {x, "/", y} -> x / y
-            {x, "^", y} -> :math.pow(x, y)
-            {x, "%", y} -> rem x, y
-            _ -> IO.puts("Invalid operator")
-        end
-    end
+    def calculate(x, "+", y), do: x + y
+    def calculate(x, "-", y), do: x - y
+    def calculate(x, "*", y), do: x * y
+    def calculate(x, "/", y), do: x / y
+    def calculate(x, "^", y), do: :math.pow(x, y)
+    def calculate(x, "%", y), do: rem x, y
+    def calculate(_, _, _), do: IO.puts("Invalid operator")
 end
 
 defmodule Main do
@@ -45,7 +41,7 @@ defmodule Main do
         operant = Calculator.get_operator
         y       = Calculator.get_user_input 
 
-        result = Calculator.calculator(x, operant, y)
+        result = Calculator.calculate(x, operant, y)
         IO.puts("#{x} #{operant} #{y} = #{result}")
     end
 end
