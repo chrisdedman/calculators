@@ -1,3 +1,5 @@
+// TO-DO: Refactoring
+
 #include <iostream>
 #include <iomanip>
 
@@ -51,7 +53,7 @@ int calculator( int x, char operant, int y )
 int main()
 {
 	std::cout << "=========================\n";
-	std::cout << "Welcome to my Calculator!\n";
+	std::cout << "Welcome to C++Calculator!\n";
 	std::cout << "=========================\n";
 
 	tryAgain:
