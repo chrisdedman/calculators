@@ -5,17 +5,26 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"math"
+	"strconv"
 )
 
 // Get user input for the numbers to be calculated
 // Return the user number
 func get_user_input() float64 {
-	var number float64
+	var input string
 
 	fmt.Printf("Enter a number: ")
-	fmt.Scan(&number)
+	fmt.Scan(&input)
+
+	number, err := strconv.ParseFloat(input, 64)
+	if err != nil {
+		fmt.Printf("Invalid input. Please enter a valid number.\n")
+		return get_user_input()
+	}
 
 	return number
 }
@@ -32,26 +41,32 @@ func get_operator() string {
 
 // Calculate x and y according to the user choice operant
 // Return the value calculated
-func calculator(x float64, operant string, y float64) float64 {
+func calculator(x float64, operant string, y float64) (float64, error) {
 	switch operant {
 	case "+":
-		return x + y
+		return x + y, nil
 	case "*":
-		return x * y
+		return x * y, nil
 	case "-":
-		return x - y
+		return x - y, nil
 	case "/":
-		return x / y
+		if y == 0 {
+			return y, errors.New("'Division by zero'")
+		}
+		return x / y, nil
 	case "%":
-		return math.Mod(x, y)
+		return math.Mod(x, y), nil
 	case "^":
-		return math.Pow(x, y)
+		return math.Pow(x, y), nil
 	default:
-		return 404
+		return x, errors.New("Invalid operator")
 	}
 }
 
 func main() {
+	log.SetPrefix("Error: ")
+	log.SetFlags(0)
+
 	fmt.Printf("\t==========================\n")
 	fmt.Printf("\t Welcome to GoCalculator! \n")
 	fmt.Printf("\t==========================\n\n")
@@ -60,10 +75,9 @@ func main() {
 	operant := get_operator()
 	second_number := get_user_input()
 
-	result := calculator(first_number, operant, second_number)
-	if result == 404 {
-		fmt.Printf("\nError - Invalide Operant!\n\t Operant entered %v\n", operant)
-	} else {
-		fmt.Printf("%v %v %v = %v\n", first_number, operant, second_number, result)
+	result, err := calculator(first_number, operant, second_number)
+	if err != nil {
+		log.Fatal(err)
 	}
+	fmt.Printf("\nResult: %v %v %v = %v\n", first_number, operant, second_number, result)
 }
